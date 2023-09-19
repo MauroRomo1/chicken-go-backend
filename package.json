@@ -1,0 +1,12 @@
+{
+  "name": "backend-provisional-final",
+  "version": "1.0.0",
+  "description": "Backend provisional del proyecto final",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Mauro Agustín Romo",
+  "license": "ISC"
+}
