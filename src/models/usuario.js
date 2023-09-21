@@ -4,7 +4,6 @@ const userSchema = new Schema({
   nickname: {
     type: String,
     required: true,
-    unique: true,
     minLength: 2,
     maxLength: 15,
   },
