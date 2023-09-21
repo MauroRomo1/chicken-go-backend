@@ -13,13 +13,13 @@ const userSchema = new Schema({
     required: true,
     unique: true,
     minLength: 6,
-    maxLength: 200,
+    maxLength: 150,
   },
   password: {
     type: String,
     required: true,
     minLength: 8,
-    maxLength: 18,
+    maxLength: 200,
   },
   rol: {
     type: String,
