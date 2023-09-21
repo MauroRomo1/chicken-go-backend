@@ -1,12 +1,15 @@
 import User from "../models/usuario.js";
 import bcrypt from "bcrypt";
 
-export const listUsers = (req, res) => {
+export const listUsers = async (req, res) => {
   try {
-    // Ir a la BD y pedir los usuarios
-    res.send("Esto es una prueba de listar usuarios");
+    const users = await User.find();
+    res.status(200).json(users);
   } catch (error) {
     console.log(error);
+    res.status(404).json({
+      message: "Error al buscar los usuarios",
+    });
   }
 };
 
