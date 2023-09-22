@@ -1,3 +1,4 @@
+import { validationResult } from "express-validator";
 import User from "../models/usuario.js";
 import bcrypt from "bcrypt";
 
@@ -15,6 +16,16 @@ export const listUsers = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
+    // Trabajar los datos de la validacion
+    const errors = validationResult(req);
+    // errors.isEmpty() true: si esta todo okay, false: si hay errores
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
     const { email, password } = req.body;
 
     let user = await User.findOne({ email });
