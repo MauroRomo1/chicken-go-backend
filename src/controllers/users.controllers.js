@@ -18,6 +18,7 @@ export const createUser = async (req, res) => {
     const { email, password } = req.body;
 
     let user = await User.findOne({ email });
+
     if (user) {
       return res.status(400).json({
         message: "Ya existe un usuario con el correo enviado",
