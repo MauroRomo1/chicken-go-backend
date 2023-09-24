@@ -20,4 +20,4 @@ app.use(morgan("dev"));
 
 // 3- Crear las rutas
 // http://localhost:4000/api/usuario
-app.use("/api", userRouter);
+app.use("/api/usuario", userRouter);

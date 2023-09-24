@@ -4,7 +4,7 @@ import validationUser from "../helpers/validationUser.js";
 
 const router = Router();
 
-router.route("/usuario").get(listUsers);
-router.route("/usuario/crear-usuario").post(validationUser, createUser);
+router.route("/").get(listUsers);
+router.route("/crear").post(validationUser, createUser);
 
 export default router;
