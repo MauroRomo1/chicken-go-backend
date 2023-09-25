@@ -15,15 +15,23 @@ export const listUsers = async (req, res) => {
 
 export const createUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, nickname, password } = req.body;
 
     let user = await User.findOne({ email });
+    let userNickname = await User.findOne({ nickname });
 
     if (user) {
       return res.status(400).json({
         message: "Ya existe un usuario con el correo enviado",
       });
     }
+
+    if (userNickname) {
+      return res.status(400).json({
+        message: "Ya existe un usuario con el nickname enviado",
+      });
+    }
+
     user = new User(req.body);
     const salt = bcrypt.genSaltSync(10);
     user.password = bcrypt.hashSync(password, salt);
