@@ -2,11 +2,17 @@ import { check } from "express-validator";
 import resultValidation from "./validationResult.js";
 
 const validationUser = [
-  check("nickname")
+  check("name")
     .notEmpty()
-    .withMessage("El nickname es un dato obligatorio.")
+    .withMessage("El nombre es un dato obligatorio.")
     .isLength({ min: 2, max: 20 })
-    .withMessage("El nickname debe de tener entre 2 y 20 caracteres."),
+    .withMessage("El nombre debe de tener entre 2 y 20 caracteres."),
+
+  check("lastname")
+    .notEmpty()
+    .withMessage("El apellido es un dato obligatorio.")
+    .isLength({ min: 2, max: 20 })
+    .withMessage("El apellido debe de tener entre 2 y 20 caracteres."),
 
   check("email")
     .notEmpty()
