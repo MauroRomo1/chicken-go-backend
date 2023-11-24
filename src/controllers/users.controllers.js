@@ -1,4 +1,4 @@
-import User from "../models/usuario.js";
+import User from "../models/user.js";
 import bcrypt from "bcrypt";
 
 export const listUsers = async (req, res) => {
@@ -30,7 +30,8 @@ export const createUser = async (req, res) => {
     await user.save();
     res.status(201).json({
       message: "Usuario creado",
-      nickname: user.nickname,
+      name: user.name,
+      lastname: user.lastname,
       uid: user._id,
     });
   } catch (error) {

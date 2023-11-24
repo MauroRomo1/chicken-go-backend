@@ -25,7 +25,7 @@ const validationUser = [
   check("password")
     .notEmpty()
     .withMessage("La contraseña es un dato obligatorio")
-    .isLength({ min: 8, max: 18 })
+    .isLength({ min: 8, max: 200 })
     .withMessage("La contraseña debe de tener entre 8 y 18 caracteres.")
     .matches(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S+$/)
     .withMessage(
@@ -38,7 +38,6 @@ const validationUser = [
     .isIn(["usuario", "administrador"])
     .withMessage("Debe de ingresar una categoria valida"),
 
-  //Al final de todos los check llamamos al archivo de resultado de validaciones
   (req, res, next) => {
     resultValidation(req, res, next);
   },
