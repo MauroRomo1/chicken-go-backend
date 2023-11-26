@@ -1,7 +1,13 @@
 import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema({
-  nickname: {
+  name: {
+    type: String,
+    required: true,
+    minLength: 2,
+    maxLength: 20,
+  },
+  lastname: {
     type: String,
     required: true,
     minLength: 2,
@@ -30,6 +36,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = mongoose.model("usuario", userSchema);
+const User = mongoose.model("users", userSchema);
 
 export default User;

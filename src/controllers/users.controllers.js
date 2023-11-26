@@ -1,5 +1,40 @@
-import User from "../models/usuario.js";
+import User from "../models/user.js";
 import bcrypt from "bcrypt";
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({
+        message: "Correo o password incorrecto - correo",
+      });
+    }
+
+    const passwordValid = bcrypt.compareSync(password, user.password);
+
+    if (!passwordValid) {
+      return res.status(400).json({
+        message: "Correo o password incorrecto - password",
+      });
+    }
+
+    res.status(200).json({
+      message: "El usuario existe",
+      uid: user._id,
+      name: user.name,
+      lastname: user.lastname,
+      rol: user.rol,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: "Usuario o contraseña invalido",
+    });
+  }
+};
 
 export const listUsers = async (req, res) => {
   try {
@@ -29,8 +64,9 @@ export const createUser = async (req, res) => {
     user.password = bcrypt.hashSync(password, salt);
     await user.save();
     res.status(201).json({
-      message: "Usuario creado",
-      nickname: user.nickname,
+      message: "Usuario creado con exito.",
+      name: user.name,
+      lastname: user.lastname,
       uid: user._id,
     });
   } catch (error) {
