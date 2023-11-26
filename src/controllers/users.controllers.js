@@ -1,3 +1,4 @@
+import generateJWT from "../helpers/token-sign.js";
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 
@@ -21,12 +22,22 @@ export const login = async (req, res) => {
       });
     }
 
+    const token = await generateJWT(
+      user._id,
+      user.name,
+      user.lastname,
+      user.rol,
+      user.state
+    );
+
     res.status(200).json({
       message: "El usuario existe",
       uid: user._id,
       name: user.name,
       lastname: user.lastname,
       rol: user.rol,
+      state: user.state,
+      token,
     });
   } catch (error) {
     console.log(error);
