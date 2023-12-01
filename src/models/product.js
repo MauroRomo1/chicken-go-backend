@@ -12,7 +12,7 @@ const productSchema = new Schema({
     type: Number,
     required: true,
     min: 1,
-    max: 10000,
+    max: 30000,
   },
   category: {
     type: String,
@@ -21,6 +21,8 @@ const productSchema = new Schema({
   detailProduct: {
     type: String,
     required: true,
+    minLength: 10,
+    maxLength: 1000,
   },
   imageURL: {
     type: String,
