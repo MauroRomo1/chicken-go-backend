@@ -28,3 +28,17 @@ export const listProducts = async (req, res) => {
     });
   }
 };
+
+export const editProduct = async (req, res) => {
+  try {
+    await Product.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({
+      message: "Producto fue editado/modificado correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: "No se puede editar el producto",
+    });
+  }
+};
