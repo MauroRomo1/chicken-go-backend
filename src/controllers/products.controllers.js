@@ -42,3 +42,17 @@ export const editProduct = async (req, res) => {
     });
   }
 };
+
+export const deleteProduct = async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      message: "El producto fue eliminado correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      message: "No se pudo eliminar el producto",
+    });
+  }
+};
