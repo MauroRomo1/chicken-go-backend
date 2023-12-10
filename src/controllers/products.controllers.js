@@ -1,7 +1,16 @@
+import { validationResult } from "express-validator";
 import Product from "../models/product.js";
 
 export const createProduct = async (req, res) => {
   try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        messageErrors: errors.array(),
+      });
+    }
+
     const productNew = new Product(req.body);
 
     await productNew.save();
