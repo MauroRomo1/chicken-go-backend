@@ -6,11 +6,14 @@ import {
   listProducts,
 } from "../controllers/products.controllers.js";
 import validationProduct from "../helpers/validationProduct.js";
+import verifyJWT from "../helpers/token-verify.js";
 
 const router = Router();
 
 router.route("/producto").get(listProducts);
-router.route("/producto/crear-producto").post(validationProduct, createProduct);
+router
+  .route("/producto/crear-producto")
+  .post([verifyJWT, validationProduct], createProduct);
 router.route("/producto/editar/:id").put(validationProduct, editProduct);
 router.route("/producto/borrar/:id").delete(deleteProduct);
 
