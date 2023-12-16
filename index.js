@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import "dotenv/config";
 import userRouter from "./src/routes/users.routes.js";
+import productRouter from "./src/routes/products.routes.js";
 import "./src/database/database.js";
 
 const app = express();
@@ -17,3 +18,4 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 app.use("/api", userRouter);
+app.use("/api", productRouter);
